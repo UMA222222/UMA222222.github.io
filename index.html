@@ -3,79 +3,108 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="style.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
     <title>UMAのポートフォリオ</title>
+    <style>
+      /* JSで使うアニメーション用の設定 */
+      .fade-in { opacity: 0; transform: translateY(30px); transition: 1s; }
+      .show { opacity: 1; transform: translateY(0); }
+      #welcome-msg { color: #007041; font-weight: bold; min-height: 1.5em; } /* ローソンカラーを意識 */
+    </style>
   </head>
   <body>
+    <div id="welcome-msg"></div>
+
     <h1>UMA</h1>
-      <img src="d9f2a0f7-private.png">
+    <img src="d9f2a0f7-private.png" alt="プロフィール画像">
     
-    <h2>About</h2>
-    <p>
-      ZEN大学1年生。<br>
-      面白いゲーム募集中です！
-    </p>
+    <section class="fade-in">
+      <h2>About</h2>
+      <p>
+        ZEN大学1年生。<br>
+        面白いゲーム募集中です！
+      </p>
+    </section>
 
-    <h3>Profile</h3>
-    <ul>
-      <li>UMA</li>
-      <li>愛知県</li>
-      <li>プログラミングはド素人、まだまだ勉強中です！</li>
-    </ul>
+    <section class="fade-in">
+      <h3>Profile</h3>
+      <ul>
+        <li>UMA</li>
+        <li>愛知県</li>
+        <li>プログラミングはド素人、まだまだ勉強中です！</li>
+      </ul>
+    </section>
 
-    <h3>Skills</h3>
-    <table>
-      <tr>
-        <th>OS</th>
-        <td>macOS、iOS </td>
-      </tr>
-      <tr>
-        <th>Engine, Frameworks</th>
-        <td>Node.js, Express など</td>
-      </tr>
-      <tr>
-        <th>Tool, MiddleWare</th>
-        <td>Git, GitHub PostgreSQL など</td>
-      </tr>
-      <tr>
-        <th>資格・免許</th>
-        <td>なし</td>
-      </tr>
-    </table>
+    <section class="fade-in">
+      <h3>Skills</h3>
+      <table>
+        <tr><th>OS</th><td>macOS、iOS</td></tr>
+        <tr><th>Engine, Frameworks</th><td>Node.js, Express など</td></tr>
+        <tr><th>Tool, MiddleWare</th><td>Git, GitHub PostgreSQL など</td></tr>
+        <tr><th>資格・免許</th><td>なし</td></tr>
+      </table>
+    </section>
 
-    <h3>Works</h3>
-    <p>アピールできる活動内容を書きましょう。</p>
-    <ul>
-      <li><a href="https://www.lawson.co.jp/</a>最近、ローソンのアルバイトでリーダークルー（バイトリーダー）認定試験を満点合格した</li>
+    <section class="fade-in">
+      <h3>Works</h3>
+      <p>アピールできる活動内容を書きましょう。</p>
+      <ul>
+        <li><a href="https://www.lawson.co.jp/">ローソン</a>のアルバイトでリーダークルー（バイトリーダー）認定試験を満点合格！</li>
+      </ul>
+      <button onclick="congrats()">リーダーを祝う！</button>
+    </section>
+
+    <section class="fade-in">
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:251zs00918@student.zen.ac.jp">学園アドレス</a></li>
         </ul>
-      </li>
-    </ul>
+    </section>
 
-    <h3>Contact</h3>
-    <p>連絡先や SNS のアカウントを書きましょう。</p>
-    <ul>
-      <li><a href="251zs00918@student.zen.ac.jp">学園アドレス</a></li>
-    </ul>
+    <section class="fade-in">
+      <h3>History</h3>
+      <table>
+        <tr><th>2025年</th><td><a href="https://www.lawson.co.jp/">ローソン</a> リーダークルー研修合格</td></tr>
+        <tr><th>2025年</th><td><a href="https://zen.ac.jp/">ZEN大学</a> 知能情報社会学部 入学</td></tr>
+        <tr><th>2023年</th><td><a href="https://www.lawson.co.jp/">ローソン</a> 入職</td></tr>
+        <tr><th>2024年</th><td>N高等学校 卒業</td></tr>
+      </table>
+    </section>
 
-    <h3>History</h3>
-    <p>学歴、職歴、アルバイト、インターン経験など。</p>
-    <table>
-      <tr>
-        <th>2025年</th>
-        <td><a href="https://www.lawson.co.jp/">ローソン</a> リーダークルー研修合格</td>
-      </tr>
-      <tr>
-        <th>2025年</th>
-        <td> <a href="https://zen.ac.jp/">ZEN大学</a> 知能情報社会学部 入学</td>
-      </tr>
-      <tr>
-        <th>2023年</th>
-        <td><a href="https://www.lawson.co.jp/">ローソン</a> 入職</td>
-      </tr>
-      <tr>
-        <th>2024年</th>
-        <td>学校法人角川ドワンゴ学園 <a href="https://nnn.ed.jp/">N高等学校</a> 卒業</td>
-      </tr>
-    </table>
+    <script>
+      // 1. タイピングアニメーション
+      const msgTag = document.getElementById('welcome-msg');
+      const text = "いらっしゃいませ！UMAのポートフォリオへようこそ。";
+      let i = 0;
+      function typeWriter() {
+        if (i < text.length) {
+          msgTag.innerHTML += text.charAt(i);
+          i++;
+          setTimeout(typeWriter, 100);
+        }
+      }
+
+      // 2. スクロールでふわっと表示
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('show');
+          }
+        });
+      }, { threshold: 0.1 });
+
+      document.querySelectorAll('.fade-in').forEach(section => {
+        observer.observe(section);
+      });
+
+      // 3. お祝いアクション
+      function congrats() {
+        alert("🎉 リーダークルー満点合格おめでとうございます！ 🎉");
+        document.body.style.backgroundColor = "#e8f5e9"; // 背景を薄い緑に
+      }
+
+      // 実行
+      window.onload = typeWriter;
+    </script>
   </body>
 </html>
